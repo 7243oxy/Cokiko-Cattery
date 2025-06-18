@@ -69,6 +69,12 @@ box-shadow: 0 0 0 2px rgba(197, 165, 114, 0.2);
 position: relative;
 padding-left: 30px;
 cursor: pointer;
+display: flex;
+align-items: center;
+transition: all 0.3s ease;
+}
+.custom-checkbox:hover .checkmark {
+border-color: #b48f5f;
 }
 .custom-checkbox input {
 position: absolute;
@@ -77,15 +83,18 @@ cursor: pointer;
 }
 .checkmark {
 position: absolute;
-top: 0;
+top: 50%;
+transform: translateY(-50%);
 left: 0;
 height: 20px;
 width: 20px;
 border: 2px solid #C5A572;
 border-radius: 4px;
+transition: all 0.2s ease;
 }
 .custom-checkbox input:checked ~ .checkmark {
 background-color: #C5A572;
+transform: translateY(-50%) scale(1.05);
 }
 .checkmark:after {
 content: "";
@@ -94,6 +103,7 @@ display: none;
 }
 .custom-checkbox input:checked ~ .checkmark:after {
 display: block;
+animation: checkmark 0.2s ease-in-out forwards;
 }
 .custom-checkbox .checkmark:after {
 left: 6px;
@@ -103,6 +113,24 @@ height: 10px;
 border: solid white;
 border-width: 0 2px 2px 0;
 transform: rotate(45deg);
+}
+@keyframes checkmark {
+0% {
+opacity: 0;
+transform: rotate(45deg) scale(0.8);
+}
+100% {
+opacity: 1;
+transform: rotate(45deg) scale(1);
+}
+}
+.custom-checkbox .checkbox-text {
+color: #4B5563;
+font-weight: 500;
+transition: color 0.2s ease;
+}
+.custom-checkbox input:checked ~ .checkbox-text {
+color: #1F2937;
 }
 .gold-pattern {
 background-image: radial-gradient(#C5A572 1px, transparent 1px);
@@ -122,7 +150,7 @@ opacity: 0.1;
 <h1 class="text-2xl font-['Pacifico'] text-primary">Cokiko Cattery</h1>
 </div>
 <nav class="hidden md:flex space-x-8">
-<a href="#" class="heading font-medium text-gray-800 hover:text-primary transition">Home</a>
+<a href="#top" id="homeLink" class="heading font-medium text-gray-800 hover:text-primary transition">Home</a>
 <a href="#about" class="heading font-medium text-gray-800 hover:text-primary transition">About</a>
 <a href="#cats" class="heading font-medium text-gray-800 hover:text-primary transition">Our Cats</a>
 <a href="#contact" class="heading font-medium text-gray-800 hover:text-primary transition">Contact</a>
@@ -139,7 +167,7 @@ opacity: 0.1;
 <div class="max-w-2xl">
 <h1 class="heading text-5xl md:text-6xl font-bold text-white leading-tight mb-4">Cokiko Cattery</h1>
 <p class="accent-text text-xl md:text-2xl text-white opacity-90 mb-8">Breeding exceptional golden British shorthairs with perfect temperament and stunning appearance</p>
-<button class="bg-primary hover:bg-opacity-90 text-white py-3 px-8 text-lg font-semibold !rounded-button shadow-lg transition whitespace-nowrap">Meet Our Cats</button>
+<button onclick="document.getElementById('cats').scrollIntoView({behavior: 'smooth'})" class="bg-primary hover:bg-opacity-90 text-white py-3 px-8 text-lg font-semibold !rounded-button shadow-lg transition whitespace-nowrap cursor-pointer">Meet Our Cats</button>
 </div>
 </div>
 </section>
@@ -254,8 +282,8 @@ opacity: 0.1;
 <h3 class="heading text-2xl font-bold">Mochi</h3>
 <p class="text-lg font-light">Grand Champion | 1 years</p>
 <div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">Stud</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Champion</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">King</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Daddy</span>
 </div>
 </div>
 </div>
@@ -264,10 +292,10 @@ opacity: 0.1;
 <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3b9a2f3f0896bd31aac99981a90d913b.jpeg" alt="Champion Queen" class="w-full h-[400px] object-cover object-top">
 <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
 <h3 class="heading text-2xl font-bold">Lattie</h3>
-<p class="text-lg font-light">Champion | 3 years</p>
+<p class="text-lg font-light">Champion | 1 years</p>
 <div class="flex mt-3">
 <span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">Queen</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Champion</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Mommy</span>
 </div>
 </div>
 </div>
@@ -287,11 +315,11 @@ opacity: 0.1;
 <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
 <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3209c3bd9ba97579e633b348a347e5bd.jpeg" alt="Champion Queen" class="w-full h-[400px] object-cover object-top">
 <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold">CH Goldenheart Isabella</h3>
+<h3 class="heading text-2xl font-bold"></h3>
 <p class="text-lg font-light">Liliac Goden Shaded | 7 weeks</p>
 <div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">Queen</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Champion</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">girl</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
 </div>
 </div>
 </div>
@@ -299,11 +327,11 @@ opacity: 0.1;
 <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
 <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/e34bb7e24cc842686228a666aa1f3d90.jpeg" alt="Young King" class="w-full h-[400px] object-cover object-top">
 <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold">Goldenheart Theodore</h3>
-<p class="text-lg font-light">Rising Star | 1.5 years</p>
+<h3 class="heading text-2xl font-bold"></h3>
+<p class="text-lg font-light">Blue Goden Shaded | 7 weeks</p>
 <div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">Stud</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Junior</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">boy</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
 </div>
 </div>
 </div>
@@ -311,11 +339,11 @@ opacity: 0.1;
 <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
 <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/750c2bb41cee1c3b3a3831d30c927937.jpeg" alt="Young Queen" class="w-full h-[400px] object-cover object-top">
 <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold">Goldenheart Charlotte</h3>
-<p class="text-lg font-light">Rising Star | 1 year</p>
+<h3 class="heading text-2xl font-bold"></h3>
+<p class="text-lg font-light">Golden Point | 7 weeks</p>
 <div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">Queen</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Junior</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">girl</span>
+<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
 </div>
 </div>
 </div>
@@ -332,37 +360,40 @@ opacity: 0.1;
 <div class="w-full md:w-1/2 p-8 md:p-12">
 <h3 class="heading text-2xl font-semibold mb-6 text-primary">Get in Touch</h3>
 <p class="text-gray-700 mb-8">Interested in our Golden British kittens or have questions about our breeding program? Fill out the form below and we'll get back to you as soon as possible.</p>
-<form action="https://formspree.io/f/meokzgqa" method="POST" onsubmit="alert('Message sent! Thank you.');">
-  <div class="mb-6">
-    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-    <input type="text" id="name" name="name" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Elizabeth Bennett">
-  </div>
-  <div class="mb-6">
-    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-    <input type="email" id="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="elizabeth@example.com">
-  </div>
-  <div class="mb-6">
-    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-    <select id="subject" name="subject" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800 pr-8 appearance-none bg-white">
-      <option value="" disabled selected>Please select a subject</option>
-      <option value="kitten">Kitten Inquiry</option>
-      <option value="breeding">Breeding Program</option>
-      <option value="visit">Cattery Visit</option>
-      <option value="other">Other</option>
-    </select>
-  </div>
-  <div class="mb-6">
-    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
-    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Please tell us about your interest in our Golden British cats..."></textarea>
-  </div>
-  <label class="custom-checkbox mb-6 block">
-    <input type="checkbox" name="subscribe">
-    <span class="checkmark"></span>
-    <span class="text-sm text-gray-700">I agree to receive updates about available kittens and cattery news</span>
-  </label>
-  <button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white py-3 px-6 font-semibold !rounded-button shadow-md transition whitespace-nowrap">Send Message</button>
+<form action="https://readdy.ai/api/form/d191v2ahnf08iom4v77g" method="POST" enctype="application/x-www-form-urlencoded" id="contactForm">
+<div class="mb-6">
+<label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+<input type="text" id="name" name="name" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Elizabeth Bennett">
+</div>
+<div class="mb-6">
+<label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+<input type="email" id="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="elizabeth@example.com">
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+<select id="subject" name="subject" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800 pr-8 appearance-none bg-white" style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M5 7.5L10 12.5L15 7.5\" stroke=\"%23C5A572\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
+<option value="" disabled selected>Please select a subject</option>
+<option value="kitten">Kitten Inquiry</option>
+<option value="breeding">Breeding Program</option>
+<option value="visit">Cattery Visit</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+<textarea id="message" name="message" rows="4" required maxlength="500" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Please tell us about your interest in our Golden British cats..."></textarea>
+<div class="mt-2 text-sm text-gray-500">
+<span id="charCount">0</span>/500 characters
+</div>
+</div>
+<label class="custom-checkbox mb-6 block">
+<input type="checkbox" id="newsletter-checkbox" name="newsletter">
+<span class="checkmark"></span>
+<span class="text-sm checkbox-text">I agree to receive updates about available kittens and cattery news</span>
+</label>
+<div id="formStatus" class="mb-4 hidden rounded-lg p-4"></div>
+<button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white py-3 px-6 font-semibold !rounded-button shadow-md transition whitespace-nowrap">Send Message</button>
 </form>
-
 </div>
 <div class="w-full md:w-1/2 bg-gray-100 p-8 md:p-12 flex flex-col">
 <div class="mb-8">
@@ -407,9 +438,9 @@ opacity: 0.1;
 <div class="mt-auto">
 <h3 class="heading text-xl font-semibold mb-4 text-primary">Certifications</h3>
 <div class="flex flex-wrap gap-3">
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">GCCF Registered</span>
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">TICA Member</span>
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">FIFe Approved</span>
+<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">WCF Registered</span>
+<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary"> Catz Inc Registered</span>
+<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">NZCF Member</span>
 <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Ethical Breeder</span>
 </div>
 <div class="mt-8">
@@ -521,6 +552,7 @@ catCards.forEach(card => {
 const tags = card.querySelectorAll('.text-xs');
 const matchesFilter = category === 'all' ||
 Array.from(tags).some(tag =>
+(category === 'Stud' && tag.textContent === 'King') ||
 tag.textContent.toLowerCase() === category.toLowerCase()
 );
 card.style.display = matchesFilter ? 'block' : 'none';
@@ -540,27 +572,76 @@ filterCats('Queen');
 });
 });
 </script>
-<script id="checkboxScript">
+<script id="scrollToTopScript">
 document.addEventListener('DOMContentLoaded', function() {
-const customCheckbox = document.querySelector('.custom-checkbox');
-const checkbox = customCheckbox.querySelector('input[type="checkbox"]');
-const checkmark = customCheckbox.querySelector('.checkmark');
-function toggleCheckbox() {
-checkbox.checked = !checkbox.checked;
-updateCheckmarkStyle();
+const homeLink = document.getElementById('homeLink');
+homeLink.addEventListener('click', function(e) {
+e.preventDefault();
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+</script>
+
+<script id="formScript">
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.getElementById('contactForm');
+const messageTextarea = document.getElementById('message');
+const charCount = document.getElementById('charCount');
+const formStatus = document.getElementById('formStatus');
+const submitBtn = form.querySelector('button[type="submit"]');
+messageTextarea.addEventListener('input', function() {
+const currentLength = this.value.length;
+charCount.textContent = currentLength;
+if (currentLength > 500) {
+this.value = this.value.substring(0, 500);
+charCount.textContent = 500;
 }
-function updateCheckmarkStyle() {
-if (checkbox.checked) {
-checkmark.style.backgroundColor = '#C5A572';
-checkmark.style.borderColor = '#C5A572';
+});
+form.addEventListener('submit', async function(e) {
+e.preventDefault();
+if (messageTextarea.value.length > 500) {
+showStatus('Message exceeds 500 characters limit', 'error');
+return;
+}
+const formData = new URLSearchParams();
+for (const pair of new FormData(form)) {
+formData.append(pair[0], pair[1]);
+}
+submitBtn.textContent = 'Sending...';
+submitBtn.disabled = true;
+try {
+const response = await fetch(form.action, {
+method: 'POST',
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded',
+},
+body: formData.toString()
+});
+if (response.ok) {
+showStatus('Message sent successfully!', 'success');
+form.reset();
+charCount.textContent = '0';
 } else {
-checkmark.style.backgroundColor = 'transparent';
-checkmark.style.borderColor = '#C5A572';
+showStatus('Failed to send message. Please try again.', 'error');
 }
+} catch (error) {
+showStatus('An error occurred. Please try again later.', 'error');
+} finally {
+submitBtn.textContent = 'Send Message';
+submitBtn.disabled = false;
 }
-checkmark.addEventListener('click', toggleCheckbox);
-checkbox.addEventListener('change', updateCheckmarkStyle);
-updateCheckmarkStyle();
+});
+function showStatus(message, type) {
+formStatus.textContent = message;
+formStatus.className = `mb-4 rounded-lg p-4 ${type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`;
+formStatus.classList.remove('hidden');
+setTimeout(() => {
+formStatus.classList.add('hidden');
+}, 5000);
+}
 });
 </script>
 </body>
