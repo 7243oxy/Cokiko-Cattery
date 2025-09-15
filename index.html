@@ -40,7 +40,6 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
 .hero-section>.container{position:relative;z-index:2;}
 
 .cream-bg{ background-color:#FDF8F3; }
-.gold-border{ border-color:#C5A572; }
 .gold-text{ color:#C5A572; }
 .gold-pattern{ background-image:radial-gradient(#C5A572 1px, transparent 1px); background-size:20px 20px; opacity:.1; }
 
@@ -73,6 +72,14 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
 @keyframes checkmark{ 0%{opacity:0;transform:rotate(45deg) scale(.8);} 100%{opacity:1;transform:rotate(45deg) scale(1);} }
 .custom-checkbox .checkbox-text{ color:#4B5563; font-weight:500; transition:color .2s ease; }
 .custom-checkbox input:checked ~ .checkbox-text{ color:#1F2937; }
+
+/* 只在社交区隐藏旧的 FB/Pinterest/YouTube（防误伤） */
+.social-icons a:has(i.ri-facebook-fill),
+.social-icons a:has(i.ri-pinterest-line),
+.social-icons a:has(i.ri-youtube-line){ display:none !important; }
+
+/* WeChat 弹窗：打开时禁止页面滚动 */
+.modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -100,7 +107,6 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
 
 <!-- Hero -->
 <section class="hero-section relative h-[600px] flex items-center">
-  <a href="https://readdy.ai/home/451ad973-56b6-4020-99c6-17d20f6c4680/16c05424-fbbe-412b-b870-c48106cae248" data-readdy="true" class="absolute inset-0 bg-black bg-opacity-30"></a>
   <div class="container mx-auto px-6 relative z-10 w-full">
     <div class="max-w-2xl">
       <h1 class="heading text-5xl md:text-6xl font-bold text-white leading-tight mb-4">Cokiko Cattery</h1>
@@ -363,7 +369,7 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
               <div class="w-10 h-10 flex items-center justify-center mr-4 text-primary"><i class="ri-phone-line ri-lg"></i></div>
               <div>
                 <h4 class="font-medium text-gray-900">Phone</h4>
-                <p class="text-gray-700">+64 2041708188</p>
+                <p class="text-gray-700">+6421309295</p>
               </div>
             </div>
             <div class="flex items-start">
@@ -375,16 +381,26 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
             </div>
           </div>
 
+          <!-- Certifications -->
+          <h3 class="heading text-xl font-semibold mb-4 text-primary">Certifications</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">WCF Registered</span>
+            <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Catz Inc Registered</span>
+            <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">NZCF Member</span>
+            <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Ethical Breeder</span>
+          </div>
+
           <!-- Follow Us（两枚金色圆形图标：Instagram + WeChat） -->
-          <div class="mt-auto">
+          <div class="mt-8">
             <h3 class="heading text-xl font-semibold mb-4 text-primary">Follow Us</h3>
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 social-icons">
               <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener"
                  aria-label="Instagram"
                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
                 <i class="ri-instagram-line ri-lg"></i>
               </a>
-              <a href="#" aria-label="WeChat"
+              <!-- 点击弹出微信二维码 -->
+              <a href="#" data-open-wechat aria-label="WeChat"
                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
                 <i class="ri-wechat-fill ri-lg"></i>
               </a>
@@ -407,13 +423,13 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
           <h2 class="text-xl font-['Pacifico'] text-primary">Cokiko Cattery</h2>
         </div>
         <p class="text-gray-400 max-w-xs">Breeding exceptional Golden British Shorthairs with perfect temperament and stunning appearance since 2022.</p>
-        <div class="mt-6 flex space-x-4">
+        <div class="mt-6 flex space-x-4 social-icons">
           <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener"
              aria-label="Instagram"
              class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
             <i class="ri-instagram-line ri-lg"></i>
           </a>
-          <a href="#" aria-label="WeChat"
+          <a href="#" data-open-wechat aria-label="WeChat"
              class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
             <i class="ri-wechat-fill ri-lg"></i>
           </a>
@@ -460,6 +476,20 @@ body { font-family: 'Open Sans', sans-serif; color:#333 }
     </div>
   </div>
 </footer>
+
+<!-- WeChat Modal -->
+<div id="wechatModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[1000]">
+  <div class="bg-white rounded-2xl p-4 md:p-6 shadow-2xl max-w-[92vw]">
+    <div class="flex items-center justify-between mb-3">
+      <h4 class="heading text-lg md:text-xl text-primary font-semibold">Scan to add us on WeChat</h4>
+      <button id="wechatClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500"><i class="ri-close-line ri-lg"></i></button>
+    </div>
+    <!-- 二维码图：把下面 src 换成你的实际地址即可 -->
+    <img id="wechatQrImg" src="" alt="WeChat QR Code"
+         class="rounded-lg border border-gray-200 max-w-[80vw] w-[320px] md:w-[420px]">
+    <p class="text-gray-600 text-sm mt-3 text-center">Long-press or scan the QR code in WeChat</p>
+  </div>
+</div>
 
 <!-- Scripts -->
 <script>
@@ -554,6 +584,32 @@ document.addEventListener('DOMContentLoaded', function() {
     formStatus.classList.remove('hidden');
     setTimeout(()=> formStatus.classList.add('hidden'), 6000);
   }
+
+  /* === WeChat 二维码弹窗 === */
+  // 1) 把你的二维码图片放到站点上，然后修改这里的地址即可
+  const WECHAT_QR_URL = "https://www.cokikocats.com/wechat-qr.jpg"; // ← 若路径不同，改这里
+  document.getElementById('wechatQrImg').src = WECHAT_QR_URL;
+
+  // 2) 打开/关闭逻辑
+  const modal = document.getElementById('wechatModal');
+  const openBtns = document.querySelectorAll('[data-open-wechat]');
+  const closeBtn = document.getElementById('wechatClose');
+
+  function openModal(){
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal(){
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('modal-open');
+  }
+
+  openBtns.forEach(btn => btn.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); }));
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+  window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 });
 </script>
 </body>
