@@ -5,7 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Golden British Cattery - Luxury Breeding</title>
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:'#C5A572',secondary:'#DFC298'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { primary:'#C5A572', secondary:'#DFC298' },
+        borderRadius: {'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}
+      }
+    }
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -13,635 +22,549 @@
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
-body {
-font-family: 'Open Sans', sans-serif;
-color: #333333;
+body { font-family: 'Open Sans', sans-serif; color: #333333; }
+.heading { font-family: 'Playfair Display', serif; }
+.accent-text { font-family: 'Cormorant Garamond', serif; }
+
+.hero-section{
+  background-image:url('https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/da8ed426a16fbd45b8387fcbd91cd941.jpeg');
+  background-size:cover;background-position:center;position:relative;
 }
-.heading {
-font-family: 'Playfair Display', serif;
+.hero-section::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.3);z-index:1;}
+.hero-section>.container{position:relative;z-index:2;}
+.cream-bg{ background-color:#FDF8F3; }
+.gold-border{ border-color:#C5A572; }
+.gold-text{ color:#C5A572; }
+
+/* === 卡片：常驻金色遮罩（匹配你截图效果） === */
+.cat-card img{
+  width:100%; height:400px; object-fit:cover; object-position:top;
+  filter:brightness(0.85);
 }
-.accent-text {
-font-family: 'Cormorant Garamond', serif;
+.cat-card:hover .cat-info{ opacity:1; }
+.cat-info{
+  opacity:1; /* 关键：默认可见 */
+  transition:opacity .3s ease;
+  background:rgba(197,165,114,.88);
 }
-.hero-section {
-background-image: url('https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/da8ed426a16fbd45b8387fcbd91cd941.jpeg');
-background-size: cover;
-background-position: center;
-position: relative;
+
+/* 表单聚焦金色边 */
+.gold-input:focus{
+  border-color:#C5A572; outline:none; box-shadow:0 0 0 2px rgba(197,165,114,.2);
 }
-.hero-section::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(0, 0, 0, 0.3);
-z-index: 1;
-}
-.hero-section > .container {
-position: relative;
-z-index: 2;
-}
-.cream-bg {
-background-color: #FDF8F3;
-}
-.gold-border {
-border-color: #C5A572;
-}
-.gold-text {
-color: #C5A572;
-}
-.cat-card:hover .cat-info {
-opacity: 1;
-}
-.cat-info {
-opacity: 0;
-transition: opacity 0.3s ease;
-background: rgba(197, 165, 114, 0.85);
-}
-.gold-input:focus {
-border-color: #C5A572;
-outline: none;
-box-shadow: 0 0 0 2px rgba(197, 165, 114, 0.2);
-}
-.custom-checkbox {
-position: relative;
-padding-left: 30px;
-cursor: pointer;
-display: flex;
-align-items: center;
-transition: all 0.3s ease;
-}
-.custom-checkbox:hover .checkmark {
-border-color: #b48f5f;
-}
-.custom-checkbox input {
-position: absolute;
-opacity: 0;
-cursor: pointer;
-}
-.checkmark {
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-left: 0;
-height: 20px;
-width: 20px;
-border: 2px solid #C5A572;
-border-radius: 4px;
-transition: all 0.2s ease;
-}
-.custom-checkbox input:checked ~ .checkmark {
-background-color: #C5A572;
-transform: translateY(-50%) scale(1.05);
-}
-.checkmark:after {
-content: "";
-position: absolute;
-display: none;
-}
-.custom-checkbox input:checked ~ .checkmark:after {
-display: block;
-animation: checkmark 0.2s ease-in-out forwards;
-}
-.custom-checkbox .checkmark:after {
-left: 6px;
-top: 2px;
-width: 5px;
-height: 10px;
-border: solid white;
-border-width: 0 2px 2px 0;
-transform: rotate(45deg);
-}
-@keyframes checkmark {
-0% {
-opacity: 0;
-transform: rotate(45deg) scale(0.8);
-}
-100% {
-opacity: 1;
-transform: rotate(45deg) scale(1);
-}
-}
-.custom-checkbox .checkbox-text {
-color: #4B5563;
-font-weight: 500;
-transition: color 0.2s ease;
-}
-.custom-checkbox input:checked ~ .checkbox-text {
-color: #1F2937;
-}
-.gold-pattern {
-background-image: radial-gradient(#C5A572 1px, transparent 1px);
-background-size: 20px 20px;
-opacity: 0.1;
-}
+
+/* 自定义复选框 */
+.custom-checkbox{ position:relative; padding-left:30px; cursor:pointer; display:flex; align-items:center; transition:all .3s ease; }
+.custom-checkbox:hover .checkmark{ border-color:#b48f5f; }
+.custom-checkbox input{ position:absolute; opacity:0; cursor:pointer; }
+.checkmark{ position:absolute; top:50%; transform:translateY(-50%); left:0; height:20px; width:20px; border:2px solid #C5A572; border-radius:4px; transition:all .2s ease; }
+.custom-checkbox input:checked ~ .checkmark{ background:#C5A572; transform:translateY(-50%) scale(1.05); }
+.checkmark:after{ content:""; position:absolute; display:none; }
+.custom-checkbox input:checked ~ .checkmark:after{ display:block; animation:checkmark .2s ease-in-out forwards; }
+.custom-checkbox .checkmark:after{ left:6px; top:2px; width:5px; height:10px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+@keyframes checkmark{ 0%{opacity:0;transform:rotate(45deg) scale(.8);} 100%{opacity:1;transform:rotate(45deg) scale(1);} }
+.custom-checkbox .checkbox-text{ color:#4B5563; font-weight:500; transition:color .2s ease; }
+.custom-checkbox input:checked ~ .checkbox-text{ color:#1F2937; }
+
+.gold-pattern{ background-image:radial-gradient(#C5A572 1px, transparent 1px); background-size:20px 20px; opacity:.1; }
 </style>
 </head>
 <body>
-<!-- Header Section -->
+<!-- Header -->
 <header class="sticky top-0 z-50 bg-white shadow-md">
-<div class="container mx-auto px-6 py-4 flex items-center justify-between">
-<div class="flex items-center">
-<div class="w-12 h-12 flex items-center justify-center mr-3">
-<i class="ri-bear-smile-fill ri-2x gold-text"></i>
-</div>
-<h1 class="text-2xl font-['Pacifico'] text-primary">Cokiko Cattery</h1>
-</div>
-<nav class="hidden md:flex space-x-8">
-<a href="#top" id="homeLink" class="heading font-medium text-gray-800 hover:text-primary transition">Home</a>
-<a href="#about" class="heading font-medium text-gray-800 hover:text-primary transition">About</a>
-<a href="#cats" class="heading font-medium text-gray-800 hover:text-primary transition">Our Cats</a>
-<a href="#contact" class="heading font-medium text-gray-800 hover:text-primary transition">Contact</a>
-</nav>
-<div class="md:hidden w-10 h-10 flex items-center justify-center">
-<i class="ri-menu-line ri-2x"></i>
-</div>
-</div>
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center">
+      <div class="w-12 h-12 flex items-center justify-center mr-3">
+        <i class="ri-bear-smile-fill ri-2x gold-text"></i>
+      </div>
+      <h1 class="text-2xl font-['Pacifico'] text-primary">Cokiko Cattery</h1>
+    </div>
+    <nav class="hidden md:flex space-x-8">
+      <a href="#top" id="homeLink" class="heading font-medium text-gray-800 hover:text-primary transition">Home</a>
+      <a href="#about" class="heading font-medium text-gray-800 hover:text-primary transition">About</a>
+      <a href="#cats" class="heading font-medium text-gray-800 hover:text-primary transition">Our Cats</a>
+      <a href="#contact" class="heading font-medium text-gray-800 hover:text-primary transition">Contact</a>
+    </nav>
+    <div class="md:hidden w-10 h-10 flex items-center justify-center">
+      <i class="ri-menu-line ri-2x"></i>
+    </div>
+  </div>
 </header>
-<!-- Hero Section -->
+
+<!-- Hero -->
 <section class="hero-section relative h-[600px] flex items-center">
-<a href="https://readdy.ai/home/451ad973-56b6-4020-99c6-17d20f6c4680/16c05424-fbbe-412b-b870-c48106cae248" data-readdy="true" class="absolute inset-0 bg-black bg-opacity-30"></a>
-<div class="container mx-auto px-6 relative z-10 w-full">
-<div class="max-w-2xl">
-<h1 class="heading text-5xl md:text-6xl font-bold text-white leading-tight mb-4">Cokiko Cattery</h1>
-<p class="accent-text text-xl md:text-2xl text-white opacity-90 mb-8">Breeding exceptional golden British shorthairs with perfect temperament and stunning appearance</p>
-<button onclick="document.getElementById('cats').scrollIntoView({behavior: 'smooth'})" class="bg-primary hover:bg-opacity-90 text-white py-3 px-8 text-lg font-semibold !rounded-button shadow-lg transition whitespace-nowrap cursor-pointer">Meet Our Cats</button>
-</div>
-</div>
+  <a href="https://readdy.ai/home/451ad973-56b6-4020-99c6-17d20f6c4680/16c05424-fbbe-412b-b870-c48106cae248" data-readdy="true" class="absolute inset-0 bg-black bg-opacity-30"></a>
+  <div class="container mx-auto px-6 relative z-10 w-full">
+    <div class="max-w-2xl">
+      <h1 class="heading text-5xl md:text-6xl font-bold text-white leading-tight mb-4">Cokiko Cattery</h1>
+      <p class="accent-text text-xl md:text-2xl text-white opacity-90 mb-8">Breeding exceptional golden British shorthairs with perfect temperament and stunning appearance</p>
+      <button onclick="document.getElementById('cats').scrollIntoView({behavior: 'smooth'})" class="bg-primary hover:bg-opacity-90 text-white py-3 px-8 text-lg font-semibold !rounded-button shadow-lg transition whitespace-nowrap cursor-pointer">Meet Our Cats</button>
+    </div>
+  </div>
 </section>
-<!-- Breed Information Section -->
+
+<!-- Breed Info -->
 <section class="py-20">
-<div class="container mx-auto px-6">
-<h2 class="heading text-4xl font-bold text-center mb-16 relative">
-<span class="relative z-10">Breed Information</span>
-<span class="absolute left-1/2 -translate-x-1/2 bottom-0 w-24 h-1 bg-primary"></span>
-</h2>
-<div class="flex flex-col md:flex-row items-center gap-12">
-<div class="w-full md:w-1/2">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3f7ccac8c5fb1d47dacdab7f2694cdbb.jpeg" alt="Golden British Cat" class="w-full h-auto rounded-lg shadow-xl">
-</div>
-<div class="w-full md:w-1/2">
-<h3 class="heading text-3xl font-semibold mb-6 text-primary">The Golden British Shorthair</h3>
-<div class="space-y-6">
-<div class="border-l-4 border-primary pl-6">
-<h4 class="heading text-xl font-medium mb-2">Appearance</h4>
-<p class="text-gray-700">Golden British Shorthairs are distinguished by their plush, dense coat in various shades of gold, from pale cream to deep copper. They have the classic British round face, chubby cheeks, and sturdy body that make the breed so beloved worldwide.</p>
-</div>
-<div class="border-l-4 border-primary pl-6">
-<h4 class="heading text-xl font-medium mb-2">Temperament</h4>
-<p class="text-gray-700">Known for their calm, gentle nature, Golden British cats are affectionate without being demanding. They're excellent companions who enjoy being near their owners while maintaining their independent spirit. Their easygoing temperament makes them perfect for families.</p>
-</div>
-<div class="border-l-4 border-primary pl-6">
-<h4 class="heading text-xl font-medium mb-2">Health & Lifespan</h4>
-<p class="text-gray-700">With proper care, Golden British Shorthairs typically enjoy a lifespan of 14-20 years. They are generally robust cats with few breed-specific health concerns. Our breeding program focuses on health testing to ensure the strongest genetic lines.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="container mx-auto px-6">
+    <h2 class="heading text-4xl font-bold text-center mb-16 relative">
+      <span class="relative z-10">Breed Information</span>
+      <span class="absolute left-1/2 -translate-x-1/2 bottom-0 w-24 h-1 bg-primary"></span>
+    </h2>
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/2">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3f7ccac8c5fb1d47dacdab7f2694cdbb.jpeg" alt="Golden British Cat" class="w-full h-auto rounded-lg shadow-xl">
+      </div>
+      <div class="w-full md:w-1/2">
+        <h3 class="heading text-3xl font-semibold mb-6 text-primary">The Golden British Shorthair</h3>
+        <div class="space-y-6">
+          <div class="border-l-4 border-primary pl-6">
+            <h4 class="heading text-xl font-medium mb-2">Appearance</h4>
+            <p class="text-gray-700">Golden British Shorthairs are distinguished by their plush, dense coat in various shades of gold, from pale cream to deep copper. They have the classic British round face, chubby cheeks, and sturdy body that make the breed so beloved worldwide.</p>
+          </div>
+          <div class="border-l-4 border-primary pl-6">
+            <h4 class="heading text-xl font-medium mb-2">Temperament</h4>
+            <p class="text-gray-700">Known for their calm, gentle nature, Golden British cats are affectionate without being demanding. They're excellent companions who enjoy being near their owners while maintaining their independent spirit. Their easygoing temperament makes them perfect for families.</p>
+          </div>
+          <div class="border-l-4 border-primary pl-6">
+            <h4 class="heading text-xl font-medium mb-2">Health & Lifespan</h4>
+            <p class="text-gray-700">With proper care, Golden British Shorthairs typically enjoy a lifespan of 14-20 years. They are generally robust cats with few breed-specific health concerns. Our breeding program focuses on health testing to ensure the strongest genetic lines.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- About Golden British Section -->
+
+<!-- About -->
 <section id="about" class="cream-bg py-20">
-<div class="container mx-auto px-6">
-<div class="text-center mb-16">
-<h2 class="heading text-4xl font-bold mb-4 relative inline-block">
-<span class="relative z-10">About Golden British</span>
-<span class="absolute left-0 right-0 bottom-0 h-1 bg-primary"></span>
-</h2>
-<p class="accent-text text-xl max-w-3xl mx-auto text-gray-700">Discover the enchanting world of Golden British Shorthairs, a breed that combines stunning beauty with an exceptional character.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-<div class="bg-white p-8 rounded-lg shadow-md text-center">
-<div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary bg-opacity-10 rounded-full">
-<i class="ri-heart-3-line ri-2x text-primary"></i>
-</div>
-<h3 class="heading text-2xl font-semibold mb-4">Loving Temperament</h3>
-<p class="text-gray-700">Golden British cats are known for their gentle, affectionate nature. They form strong bonds with their families while maintaining their dignified independence.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-md text-center">
-<div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary bg-opacity-10 rounded-full">
-<i class="ri-award-line ri-2x text-primary"></i>
-</div>
-<h3 class="heading text-2xl font-semibold mb-4">Championship Quality</h3>
-<p class="text-gray-700">Our breeding program focuses on producing cats that meet and exceed breed standards. Many of our cats have achieved championship titles in international competitions.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-md text-center">
-<div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary bg-opacity-10 rounded-full">
-<i class="ri-health-book-line ri-2x text-primary"></i>
-</div>
-<h3 class="heading text-2xl font-semibold mb-4">Health Guaranteed</h3>
-<p class="text-gray-700">Health is our top priority. All our breeding cats undergo comprehensive genetic testing, and kittens receive proper veterinary care before joining their new families.</p>
-</div>
-</div>
-<div class="mt-16 bg-white p-10 rounded-lg shadow-md">
-<div class="flex flex-col md:flex-row items-center gap-8">
-<div class="w-full md:w-1/3">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/7654c398847597e0e54a3fa0fb78a01a.jpeg" alt="Golden British Kitten" class="w-full h-auto rounded-lg">
-</div>
-<div class="w-full md:w-2/3">
-<h3 class="heading text-2xl font-semibold mb-4 text-primary">Our Breeding Philosophy</h3>
-<p class="text-gray-700 mb-4">At Golden Elegance Cattery, we are dedicated to breeding exceptional Golden British Shorthairs that exemplify the best qualities of this magnificent breed. Our breeding program is built on three core principles:</p>
-<ul class="space-y-3">
-<li class="flex items-start">
-<span class="w-6 h-6 flex items-center justify-center mr-2 mt-1 text-primary"><i class="ri-check-line"></i></span>
-<span><strong class="text-primary">Health:</strong> We conduct comprehensive health testing on all our breeding cats to ensure we pass on only the strongest genetic traits.</span>
-</li>
-<li class="flex items-start">
-<span class="w-6 h-6 flex items-center justify-center mr-2 mt-1 text-primary"><i class="ri-check-line"></i></span>
-<span><strong class="text-primary">Temperament:</strong> We select breeding cats with exceptional temperaments to produce kittens that are not only beautiful but also make wonderful companions.</span>
-</li>
-<li class="flex items-start">
-<span class="w-6 h-6 flex items-center justify-center mr-2 mt-1 text-primary"><i class="ri-check-line"></i></span>
-<span><strong class="text-primary">Type:</strong> We strive for cats that meet and exceed breed standards in terms of structure, coat quality, and color.</span>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="heading text-4xl font-bold mb-4 relative inline-block">
+        <span class="relative z-10">About Golden British</span>
+        <span class="absolute left-0 right-0 bottom-0 h-1 bg-primary"></span>
+      </h2>
+      <p class="accent-text text-xl max-w-3xl mx-auto text-gray-700">Discover the enchanting world of Golden British Shorthairs, a breed that combines stunning beauty with an exceptional character.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="bg-white p-8 rounded-lg shadow-md text-center">
+        <div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary bg-opacity-10 rounded-full">
+          <i class="ri-heart-3-line ri-2x text-primary"></i>
+        </div>
+        <h3 class="heading text-2xl font-semibold mb-4">Loving Temperament</h3>
+        <p class="text-gray-700">Golden British cats are known for their gentle, affectionate nature. They form strong bonds with their families while maintaining their dignified independence.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow-md text-center">
+        <div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary bg-opacity-10 rounded-full">
+          <i class="ri-award-line ri-2x text-primary"></i>
+        </div>
+        <h3 class="heading text-2xl font-semibold mb-4">Championship Quality</h3>
+        <p class="text-gray-700">Our breeding program focuses on producing cats that meet and exceed breed standards. Many of our cats have achieved championship titles in international competitions.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow-md text-center">
+        <div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-primary bg-opacity-10 rounded-full">
+          <i class="ri-health-book-line ri-2x text-primary"></i>
+        </div>
+        <h3 class="heading text-2xl font-semibold mb-4">Health Guaranteed</h3>
+        <p class="text-gray-700">Health is our top priority. All our breeding cats undergo comprehensive genetic testing, and kittens receive proper veterinary care before joining their new families.</p>
+      </div>
+    </div>
+
+    <div class="mt-16 bg-white p-10 rounded-lg shadow-md">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="w-full md:w-1/3">
+          <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/7654c398847597e0e54a3fa0fb78a01a.jpeg" alt="Golden British Kitten" class="w-full h-auto rounded-lg">
+        </div>
+        <div class="w-full md:w-2/3">
+          <h3 class="heading text-2xl font-semibold mb-4 text-primary">Our Breeding Philosophy</h3>
+          <p class="text-gray-700 mb-4">At Golden Elegance Cattery, we are dedicated to breeding exceptional Golden British Shorthairs that exemplify the best qualities of this magnificent breed. Our breeding program is built on three core principles:</p>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="w-6 h-6 flex items-center justify-center mr-2 mt-1 text-primary"><i class="ri-check-line"></i></span>
+              <span><strong class="text-primary">Health:</strong> We conduct comprehensive health testing on all our breeding cats to ensure we pass on only the strongest genetic traits.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-6 h-6 flex items-center justify-center mr-2 mt-1 text-primary"><i class="ri-check-line"></i></span>
+              <span><strong class="text-primary">Temperament:</strong> We select breeding cats with exceptional temperaments to produce kittens that are not only beautiful but also make wonderful companions.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-6 h-6 flex items-center justify-center mr-2 mt-1 text-primary"><i class="ri-check-line"></i></span>
+              <span><strong class="text-primary">Type:</strong> We strive for cats that meet and exceed breed standards in terms of structure, coat quality, and color.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- Our Kings and Queens Section -->
+
+<!-- Our Kings and Queens -->
 <section id="cats" class="py-20">
-<div class="container mx-auto px-6">
-<h2 class="heading text-4xl font-bold text-center mb-4">Our Kings and Queens</h2>
-<p class="accent-text text-xl text-center max-w-3xl mx-auto text-gray-700 mb-12">Meet the stunning cats that form the foundation of our breeding program</p>
-<div class="flex justify-center mb-10">
-<div class="inline-flex bg-gray-100 p-1 rounded-full">
-<button id="allCatsBtn" class="px-6 py-2 rounded-full bg-primary text-white font-medium whitespace-nowrap">All Cats</button>
-<button id="kingsBtn" class="px-6 py-2 rounded-full text-gray-700 font-medium hover:bg-gray-200 transition whitespace-nowrap">Kings</button>
-<button id="queensBtn" class="px-6 py-2 rounded-full text-gray-700 font-medium hover:bg-gray-200 transition whitespace-nowrap">Queens</button>
-</div>
-</div>
-<div id="catGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<!-- Cat 1 -->
-<div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/1e874bcb82604ffd8f19dc07c09579a8.jpeg" alt="Champion King" class="w-full h-[400px] object-cover object-top">
-<div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold">Mochi</h3>
-<p class="text-lg font-light">Grand Champion | 1 years</p>
-<div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">King</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Daddy</span>
-</div>
-</div>
-</div>
-<!-- Cat 2 -->
-<div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3b9a2f3f0896bd31aac99981a90d913b.jpeg" alt="Champion Queen" class="w-full h-[400px] object-cover object-top">
-<div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold">Lattie</h3>
-<p class="text-lg font-light">Champion | 1 years</p>
-<div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">Queen</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Mommy</span>
-</div>
-</div>
-</div>
-<!-- Cat 3 -->
-<div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/496908928357fad816579ed3ec3a7f2b.jpeg" alt="Champion King" class="w-full h-[400px] object-cover object-top">
-<div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold"></h3>
-<p class="text-lg font-light">Liliac Goden Shaded | 7 weeks</p>
-<div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">boy</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
-</div>
-</div>
-</div>
-<!-- Cat 4 -->
-<div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3209c3bd9ba97579e633b348a347e5bd.jpeg" alt="Champion Queen" class="w-full h-[400px] object-cover object-top">
-<div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold"></h3>
-<p class="text-lg font-light">Liliac Goden Shaded | 7 weeks</p>
-<div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">girl</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
-</div>
-</div>
-</div>
-<!-- Cat 5 -->
-<div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/e34bb7e24cc842686228a666aa1f3d90.jpeg" alt="Young King" class="w-full h-[400px] object-cover object-top">
-<div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold"></h3>
-<p class="text-lg font-light">Blue Goden Shaded | 7 weeks</p>
-<div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">boy</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
-</div>
-</div>
-</div>
-<!-- Cat 6 -->
-<div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
-<img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/750c2bb41cee1c3b3a3831d30c927937.jpeg" alt="Young Queen" class="w-full h-[400px] object-cover object-top">
-<div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-<h3 class="heading text-2xl font-bold"></h3>
-<p class="text-lg font-light">Golden Point | 7 weeks</p>
-<div class="flex mt-3">
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mr-2">girl</span>
-<span class="bg-white text-primary text-xs font-bold px-3 py-1 rounded-full">Available</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="container mx-auto px-6">
+    <h2 class="heading text-4xl font-bold text-center mb-4">Our Kings and Queens</h2>
+    <p class="accent-text text-xl text-center max-w-3xl mx-auto text-gray-700 mb-12">Meet the stunning cats that form the foundation of our breeding program</p>
+
+    <div class="flex justify-center mb-10">
+      <div class="inline-flex bg-gray-100 p-1 rounded-full">
+        <button id="allCatsBtn" class="px-6 py-2 rounded-full bg-primary text-white font-medium whitespace-nowrap">All Cats</button>
+        <button id="kingsBtn" class="px-6 py-2 rounded-full text-gray-700 font-medium hover:bg-gray-200 transition whitespace-nowrap">Kings</button>
+        <button id="queensBtn" class="px-6 py-2 rounded-full text-gray-700 font-medium hover:bg-gray-200 transition whitespace-nowrap">Queens</button>
+      </div>
+    </div>
+
+    <div id="catGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Card: Mochi -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/1e874bcb82604ffd8f19dc07c09579a8.jpeg" alt="Mochi - Lilac Golden Shaded">
+        <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <h3 class="heading text-2xl font-bold mb-1">Mochi</h3>
+          <p class="text-base font-light">Lilac Golden Shaded</p>
+          <div class="flex mt-3">
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">King</span>
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full">Daddy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Latte -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3b9a2f3f0896bd31aac99981a90d913b.jpeg" alt="Latte - Blue Golden Shaded">
+        <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <h3 class="heading text-2xl font-bold mb-1">Latte</h3>
+          <p class="text-base font-light">Blue Golden Shaded</p>
+          <div class="flex mt-3">
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Queen</span>
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full">Mommy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kitten 1 -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/496908928357fad816579ed3ec3a7f2b.jpeg" alt="Lilac Golden Shaded kitten">
+        <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <h3 class="heading text-2xl font-bold"></h3>
+          <p class="text-lg font-light">Lilac Golden Shaded | 7 weeks</p>
+          <div class="flex mt-3">
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Boy</span>
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kitten 2 -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3209c3bd9ba97579e633b348a347e5bd.jpeg" alt="Lilac Golden Shaded kitten">
+        <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <h3 class="heading text-2xl font-bold"></h3>
+          <p class="text-lg font-light">Lilac Golden Shaded | 7 weeks</p>
+          <div class="flex mt-3">
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Girl</span>
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kitten 3 -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/e34bb7e24cc842686228a666aa1f3d90.jpeg" alt="Blue Golden Shaded kitten">
+        <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <h3 class="heading text-2xl font-bold"></h3>
+          <p class="text-lg font-light">Blue Golden Shaded | 7 weeks</p>
+          <div class="flex mt-3">
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Boy</span>
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kitten 4 -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/750c2bb41cee1c3b3a3831d30c927937.jpeg" alt="Golden Point kitten">
+        <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <h3 class="heading text-2xl font-bold"></h3>
+          <p class="text-lg font-light">Golden Point | 7 weeks</p>
+          <div class="flex mt-3">
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Girl</span>
+            <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full">Available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- Contact Section -->
+
+<!-- Contact -->
 <section id="contact" class="cream-bg py-20 relative">
-<div class="gold-pattern absolute inset-0"></div>
-<div class="container mx-auto px-6 relative">
-<h2 class="heading text-4xl font-bold text-center mb-16">Contact Us</h2>
-<div class="bg-white rounded-xl shadow-xl overflow-hidden">
-<div class="flex flex-col md:flex-row">
-<div class="w-full md:w-1/2 p-8 md:p-12">
-<h3 class="heading text-2xl font-semibold mb-6 text-primary">Get in Touch</h3>
-<p class="text-gray-700 mb-8">Interested in our Golden British kittens or have questions about our breeding program? Fill out the form below and we'll get back to you as soon as possible.</p>
-<form action="https://readdy.ai/api/form/d191v2ahnf08iom4v77g" method="POST" enctype="application/x-www-form-urlencoded" id="contactForm">
-<div class="mb-6">
-<label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-<input type="text" id="name" name="name" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Elizabeth Bennett">
-</div>
-<div class="mb-6">
-<label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-<input type="email" id="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="elizabeth@example.com">
-</div>
-<div class="mb-6">
-<label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-<select id="subject" name="subject" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800 pr-8 appearance-none bg-white" style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M5 7.5L10 12.5L15 7.5\" stroke=\"%23C5A572\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
-<option value="" disabled selected>Please select a subject</option>
-<option value="kitten">Kitten Inquiry</option>
-<option value="breeding">Breeding Program</option>
-<option value="visit">Cattery Visit</option>
-<option value="other">Other</option>
-</select>
-</div>
-<div class="mb-6">
-<label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
-<textarea id="message" name="message" rows="4" required maxlength="500" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Please tell us about your interest in our Golden British cats..."></textarea>
-<div class="mt-2 text-sm text-gray-500">
-<span id="charCount">0</span>/500 characters
-</div>
-</div>
-<label class="custom-checkbox mb-6 block">
-<input type="checkbox" id="newsletter-checkbox" name="newsletter">
-<span class="checkmark"></span>
-<span class="text-sm checkbox-text">I agree to receive updates about available kittens and cattery news</span>
-</label>
-<div id="formStatus" class="mb-4 hidden rounded-lg p-4"></div>
-<button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white py-3 px-6 font-semibold !rounded-button shadow-md transition whitespace-nowrap">Send Message</button>
-</form>
-</div>
-<div class="w-full md:w-1/2 bg-gray-100 p-8 md:p-12 flex flex-col">
-<div class="mb-8">
-<h3 class="heading text-2xl font-semibold mb-6 text-primary">Breeder Information</h3>
-<div class="flex items-start mb-4">
-<div class="w-10 h-10 flex items-center justify-center mr-4 text-primary">
-<i class="ri-user-3-line ri-lg"></i>
-</div>
-<div>
-<h4 class="font-medium text-gray-900">Martina Yang</h4>
-<p class="text-gray-700">Professional Breeder since 2022.</p>
-</div>
-</div>
-<div class="flex items-start mb-4">
-<div class="w-10 h-10 flex items-center justify-center mr-4 text-primary">
-<i class="ri-map-pin-line ri-lg"></i>
-</div>
-<div>
-<h4 class="font-medium text-gray-900">Location</h4>
-<p class="text-gray-700">Greenhithe, Auckland, New Zealand</p>
-</div>
-</div>
-<div class="flex items-start mb-4">
-<div class="w-10 h-10 flex items-center justify-center mr-4 text-primary">
-<i class="ri-phone-line ri-lg"></i>
-</div>
-<div>
-<h4 class="font-medium text-gray-900">Phone</h4>
-<p class="text-gray-700">+64 2041708188</p>
-</div>
-</div>
-<div class="flex items-start">
-<div class="w-10 h-10 flex items-center justify-center mr-4 text-primary">
-<i class="ri-mail-line ri-lg"></i>
-</div>
-<div>
-<h4 class="font-medium text-gray-900">Email</h4>
-<p class="text-gray-700">yby0502@icloud.com</p>
-</div>
-</div>
-</div>
-<div class="mt-auto">
-<h3 class="heading text-xl font-semibold mb-4 text-primary">Certifications</h3>
-<div class="flex flex-wrap gap-3">
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">WCF Registered</span>
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary"> Catz Inc Registered</span>
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">NZCF Member</span>
-<span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Ethical Breeder</span>
-</div>
-<div class="mt-8">
-<h3 class="heading text-xl font-semibold mb-4 text-primary">Follow Us</h3>
-<div class="flex space-x-4">
-<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-<i class="ri-instagram-line"></i>
-</a>
-<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-<i class="ri-facebook-fill"></i>
-</a>
-<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-<i class="ri-pinterest-line"></i>
-</a>
-<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-<i class="ri-youtube-line"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="gold-pattern absolute inset-0"></div>
+  <div class="container mx-auto px-6 relative">
+    <h2 class="heading text-4xl font-bold text-center mb-16">Contact Us</h2>
+    <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+      <div class="flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 p-8 md:p-12">
+          <h3 class="heading text-2xl font-semibold mb-6 text-primary">Get in Touch</h3>
+          <p class="text-gray-700 mb-8">Interested in our Golden British kittens or have questions about our breeding program? Fill out the form below and we'll get back to you as soon as possible.</p>
+
+          <!-- 使用 FormSubmit AJAX：主送 icloud，CC 到 yanghanbo666@gmail.com -->
+          <form action="https://formsubmit.co/ajax/yby0502@icloud.com" method="POST" id="contactForm">
+            <!-- 蜜罐，防机器人 -->
+            <input type="text" name="_honey" style="display:none">
+
+            <!-- 关闭验证码 -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- 邮件主题与格式 -->
+            <input type="hidden" name="_subject" value="New Cokiko Cattery inquiry">
+            <input type="hidden" name="_template" value="table">
+            <!-- 抄送到另一个邮箱 -->
+            <input type="hidden" name="_cc" value="yanghanbo666@gmail.com">
+
+            <div class="mb-6">
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Elizabeth Bennett">
+            </div>
+            <div class="mb-6">
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="elizabeth@example.com">
+            </div>
+            <div class="mb-6">
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+              <select id="subject" name="subject" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800 pr-8 appearance-none bg-white" style="background-image:url('data:image/svg+xml;charset=US-ASCII,<svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><path d=&quot;M5 7.5L10 12.5L15 7.5&quot; stroke=&quot;%23C5A572&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/></svg>'); background-repeat:no-repeat; background-position:right 10px center;">
+                <option value="" disabled selected>Please select a subject</option>
+                <option value="Kitten Inquiry">Kitten Inquiry</option>
+                <option value="Breeding Program">Breeding Program</option>
+                <option value="Cattery Visit">Cattery Visit</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+              <textarea id="message" name="message" rows="4" required maxlength="500" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg gold-input text-gray-800" placeholder="Please tell us about your interest in our Golden British cats..."></textarea>
+              <div class="mt-2 text-sm text-gray-500"><span id="charCount">0</span>/500 characters</div>
+            </div>
+
+            <label class="custom-checkbox mb-6 block">
+              <input type="checkbox" id="newsletter-checkbox" name="newsletter">
+              <span class="checkmark"></span>
+              <span class="text-sm checkbox-text">I agree to receive updates about available kittens and cattery news</span>
+            </label>
+
+            <div id="formStatus" class="mb-4 hidden rounded-lg p-4"></div>
+            <button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white py-3 px-6 font-semibold !rounded-button shadow-md transition whitespace-nowrap">Send Message</button>
+          </form>
+        </div>
+
+        <div class="w-full md:w-1/2 bg-gray-100 p-8 md:p-12 flex flex-col">
+          <div class="mb-8">
+            <h3 class="heading text-2xl font-semibold mb-6 text-primary">Breeder Information</h3>
+            <div class="flex items-start mb-4">
+              <div class="w-10 h-10 flex items-center justify-center mr-4 text-primary"><i class="ri-user-3-line ri-lg"></i></div>
+              <div>
+                <h4 class="font-medium text-gray-900">Martina Yang</h4>
+                <p class="text-gray-700">Professional Breeder since 2022.</p>
+              </div>
+            </div>
+            <div class="flex items-start mb-4">
+              <div class="w-10 h-10 flex items-center justify-center mr-4 text-primary"><i class="ri-map-pin-line ri-lg"></i></div>
+              <div>
+                <h4 class="font-medium text-gray-900">Location</h4>
+                <p class="text-gray-700">Greenhithe, Auckland, New Zealand</p>
+              </div>
+            </div>
+            <div class="flex items-start mb-4">
+              <div class="w-10 h-10 flex items-center justify-center mr-4 text-primary"><i class="ri-phone-line ri-lg"></i></div>
+              <div>
+                <h4 class="font-medium text-gray-900">Phone</h4>
+                <p class="text-gray-700">+64 2041708188</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-10 h-10 flex items-center justify-center mr-4 text-primary"><i class="ri-mail-line ri-lg"></i></div>
+              <div>
+                <h4 class="font-medium text-gray-900">Email</h4>
+                <p class="text-gray-700">yby0502@icloud.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-auto">
+            <h3 class="heading text-xl font-semibold mb-4 text-primary">Certifications</h3>
+            <div class="flex flex-wrap gap-3">
+              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">WCF Registered</span>
+              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Catz Inc Registered</span>
+              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">NZCF Member</span>
+              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Ethical Breeder</span>
+            </div>
+            <div class="mt-8">
+              <h3 class="heading text-xl font-semibold mb-4 text-primary">Follow Us</h3>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-instagram-line"></i></a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-facebook-fill"></i></a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-pinterest-line"></i></a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-youtube-line"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </section>
+
 <!-- Footer -->
 <footer class="bg-gray-900 text-white py-12">
-<div class="container mx-auto px-6">
-<div class="flex flex-col md:flex-row justify-between mb-12">
-<div class="mb-8 md:mb-0">
-<div class="flex items-center mb-4">
-<div class="w-10 h-10 flex items-center justify-center mr-3 text-primary">
-<i class="ri-bear-smile-fill ri-xl"></i>
-</div>
-<h2 class="text-xl font-['Pacifico'] text-primary">Cokiko Cattery</h2>
-</div>
-<p class="text-gray-400 max-w-xs">Breeding exceptional Golden British Shorthairs with perfect temperament and stunning appearance since 2022.</p>
-<div class="mt-6 flex space-x-4">
-<a href="#" class="text-gray-400 hover:text-primary transition">
-<i class="ri-instagram-line ri-lg"></i>
-</a>
-<a href="#" class="text-gray-400 hover:text-primary transition">
-<i class="ri-facebook-fill ri-lg"></i>
-</a>
-<a href="#" class="text-gray-400 hover:text-primary transition">
-<i class="ri-pinterest-line ri-lg"></i>
-</a>
-<a href="#" class="text-gray-400 hover:text-primary transition">
-<i class="ri-youtube-line ri-lg"></i>
-</a>
-</div>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-<div>
-<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-<ul class="space-y-2">
-<li><a href="#" class="text-gray-400 hover:text-primary transition">Home</a></li>
-<li><a href="#about" class="text-gray-400 hover:text-primary transition">About</a></li>
-<li><a href="#cats" class="text-gray-400 hover:text-primary transition">Our Cats</a></li>
-<li><a href="#contact" class="text-gray-400 hover:text-primary transition">Contact</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-lg font-semibold mb-4">Resources</h3>
-<ul class="space-y-2">
-<li><a href="#" class="text-gray-400 hover:text-primary transition">Kitten Care</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition">Breed Standard</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition">FAQ</a></li>
-<li><a href="#" class="text-gray-400 hover:text-primary transition">Blog</a></li>
-</ul>
-</div>
-<div class="col-span-2 md:col-span-1">
-<h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-<p class="text-gray-400 mb-4">Subscribe to receive updates about available kittens and cattery news.</p>
-<form class="flex">
-<input type="email" placeholder="Your email" class="px-4 py-2 w-full bg-gray-800 border-none rounded-l-lg text-white focus:outline-none focus:ring-2 focus:ring-primary">
-<button type="submit" class="bg-primary hover:bg-opacity-90 px-4 py-2 rounded-r-lg whitespace-nowrap">Subscribe</button>
-</form>
-</div>
-</div>
-</div>
-<div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-<p class="text-gray-500 text-sm">© 2025 Golden Elegance Cattery. All rights reserved.</p>
-<div class="mt-4 md:mt-0 flex space-x-6">
-<a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Privacy Policy</a>
-<a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Terms of Service</a>
-<a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Cookie Policy</a>
-</div>
-</div>
-</div>
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between mb-12">
+      <div class="mb-8 md:mb-0">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 flex items-center justify-center mr-3 text-primary"><i class="ri-bear-smile-fill ri-xl"></i></div>
+          <h2 class="text-xl font-['Pacifico'] text-primary">Cokiko Cattery</h2>
+        </div>
+        <p class="text-gray-400 max-w-xs">Breeding exceptional Golden British Shorthairs with perfect temperament and stunning appearance since 2022.</p>
+        <div class="mt-6 flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-instagram-line ri-lg"></i></a>
+          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-facebook-fill ri-lg"></i></a>
+          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-pinterest-line ri-lg"></i></a>
+          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-youtube-line ri-lg"></i></a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-primary transition">Home</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-primary transition">About</a></li>
+            <li><a href="#cats" class="text-gray-400 hover:text-primary transition">Our Cats</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-primary transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-primary transition">Kitten Care</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition">Breed Standard</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Subscribe to receive updates about available kittens and cattery news.</p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 w-full bg-gray-800 border-none rounded-l-lg text-white focus:outline-none focus:ring-2 focus:ring-primary">
+            <button type="submit" class="bg-primary hover:bg-opacity-90 px-4 py-2 rounded-r-lg whitespace-nowrap">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-500 text-sm">© 2025 Golden Elegance Cattery. All rights reserved.</p>
+      <div class="mt-4 md:mt-0 flex space-x-6">
+        <a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Privacy Policy</a>
+        <a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Terms of Service</a>
+        <a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<!-- Scripts -->
 <script id="catFilterScript">
 document.addEventListener('DOMContentLoaded', function() {
-const allCatsBtn = document.getElementById('allCatsBtn');
-const kingsBtn = document.getElementById('kingsBtn');
-const queensBtn = document.getElementById('queensBtn');
-const catGrid = document.getElementById('catGrid');
-function setActiveButton(activeBtn) {
-[allCatsBtn, kingsBtn, queensBtn].forEach(btn => {
-btn.classList.remove('bg-primary', 'text-white');
-btn.classList.add('text-gray-700');
-});
-activeBtn.classList.remove('text-gray-700');
-activeBtn.classList.add('bg-primary', 'text-white');
-}
-function filterCats(category) {
-const catCards = catGrid.querySelectorAll('.cat-card');
-catCards.forEach(card => {
-const tags = card.querySelectorAll('.text-xs');
-const matchesFilter = category === 'all' ||
-Array.from(tags).some(tag =>
-(category === 'Stud' && tag.textContent === 'King') ||
-tag.textContent.toLowerCase() === category.toLowerCase()
-);
-card.style.display = matchesFilter ? 'block' : 'none';
-});
-}
-allCatsBtn.addEventListener('click', function() {
-setActiveButton(allCatsBtn);
-filterCats('all');
-});
-kingsBtn.addEventListener('click', function() {
-setActiveButton(kingsBtn);
-filterCats('Stud');
-});
-queensBtn.addEventListener('click', function() {
-setActiveButton(queensBtn);
-filterCats('Queen');
-});
-});
-</script>
-<script id="scrollToTopScript">
-document.addEventListener('DOMContentLoaded', function() {
-const homeLink = document.getElementById('homeLink');
-homeLink.addEventListener('click', function(e) {
-e.preventDefault();
-window.scrollTo({
-top: 0,
-behavior: 'smooth'
-});
-});
+  const allCatsBtn = document.getElementById('allCatsBtn');
+  const kingsBtn = document.getElementById('kingsBtn');
+  const queensBtn = document.getElementById('queensBtn');
+  const catGrid = document.getElementById('catGrid');
+
+  function setActiveButton(activeBtn) {
+    [allCatsBtn, kingsBtn, queensBtn].forEach(btn => {
+      btn.classList.remove('bg-primary', 'text-white'); btn.classList.add('text-gray-700');
+    });
+    activeBtn.classList.remove('text-gray-700'); activeBtn.classList.add('bg-primary', 'text-white');
+  }
+  function filterCats(category) {
+    const cards = catGrid.querySelectorAll('.cat-card');
+    cards.forEach(card => {
+      const tags = card.querySelectorAll('.text-xs');
+      const matches = category === 'all' ||
+        Array.from(tags).some(tag =>
+          (category === 'Stud' && tag.textContent === 'King') ||
+          tag.textContent.toLowerCase() === category.toLowerCase()
+        );
+      card.style.display = matches ? 'block' : 'none';
+    });
+  }
+  allCatsBtn.addEventListener('click', ()=>{ setActiveButton(allCatsBtn); filterCats('all'); });
+  kingsBtn.addEventListener('click', ()=>{ setActiveButton(kingsBtn); filterCats('Stud'); });
+  queensBtn.addEventListener('click', ()=>{ setActiveButton(queensBtn); filterCats('Queen'); });
 });
 </script>
 
+<script id="scrollToTopScript">
+document.addEventListener('DOMContentLoaded', function() {
+  const homeLink = document.getElementById('homeLink');
+  homeLink.addEventListener('click', function(e) {
+    e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
+  });
+});
+</script>
+
+<!-- 表单脚本：字符计数 + FormSubmit AJAX 提交 -->
 <script id="formScript">
 document.addEventListener('DOMContentLoaded', function() {
-const form = document.getElementById('contactForm');
-const messageTextarea = document.getElementById('message');
-const charCount = document.getElementById('charCount');
-const formStatus = document.getElementById('formStatus');
-const submitBtn = form.querySelector('button[type="submit"]');
-messageTextarea.addEventListener('input', function() {
-const currentLength = this.value.length;
-charCount.textContent = currentLength;
-if (currentLength > 500) {
-this.value = this.value.substring(0, 500);
-charCount.textContent = 500;
-}
-});
-form.addEventListener('submit', async function(e) {
-e.preventDefault();
-if (messageTextarea.value.length > 500) {
-showStatus('Message exceeds 500 characters limit', 'error');
-return;
-}
-const formData = new URLSearchParams();
-for (const pair of new FormData(form)) {
-formData.append(pair[0], pair[1]);
-}
-submitBtn.textContent = 'Sending...';
-submitBtn.disabled = true;
-try {
-const response = await fetch(form.action, {
-method: 'POST',
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded',
-},
-body: formData.toString()
-});
-if (response.ok) {
-showStatus('Message sent successfully!', 'success');
-form.reset();
-charCount.textContent = '0';
-} else {
-showStatus('Failed to send message. Please try again.', 'error');
-}
-} catch (error) {
-showStatus('An error occurred. Please try again later.', 'error');
-} finally {
-submitBtn.textContent = 'Send Message';
-submitBtn.disabled = false;
-}
-});
-function showStatus(message, type) {
-formStatus.textContent = message;
-formStatus.className = `mb-4 rounded-lg p-4 ${type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`;
-formStatus.classList.remove('hidden');
-setTimeout(() => {
-formStatus.classList.add('hidden');
-}, 5000);
-}
+  const form = document.getElementById('contactForm');
+  const messageTextarea = document.getElementById('message');
+  const charCount = document.getElementById('charCount');
+  const formStatus = document.getElementById('formStatus');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  messageTextarea.addEventListener('input', function() {
+    const len = this.value.length; charCount.textContent = len > 500 ? 500 : len;
+    if (len > 500) { this.value = this.value.substring(0, 500); }
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      subject: form.subject.value,
+      message: form.message.value,
+      newsletter: form.querySelector('#newsletter-checkbox').checked ? 'yes' : 'no',
+      _honey: form.querySelector('input[name="_honey"]').value || '',
+      _captcha: 'false',
+      _subject: 'New Cokiko Cattery inquiry',
+      _template: 'table',
+      _cc: 'yanghanbo666@gmail.com'
+    };
+
+    submitBtn.textContent = 'Sending...'; submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        showStatus('Message sent successfully!', 'success');
+        form.reset(); charCount.textContent = '0';
+      } else {
+        showStatus('Failed to send message. Please try again.', 'error');
+      }
+    } catch(err) {
+      showStatus('An error occurred. Please try again later.', 'error');
+    } finally {
+      submitBtn.textContent = 'Send Message'; submitBtn.disabled = false;
+    }
+  });
+
+  function showStatus(message, type) {
+    formStatus.textContent = message;
+    formStatus.className = `mb-4 rounded-lg p-4 ${type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`;
+    formStatus.classList.remove('hidden');
+    setTimeout(()=> formStatus.classList.add('hidden'), 6000);
+  }
 });
 </script>
 </body>
