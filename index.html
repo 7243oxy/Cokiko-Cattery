@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Golden British Cattery - Luxury Breeding</title>
+
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script>
   tailwind.config = {
@@ -15,28 +17,34 @@
     }
   }
 </script>
+
+<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
-body { font-family: 'Open Sans', sans-serif; color: #333333; }
+body { font-family: 'Open Sans', sans-serif; color:#333 }
 .heading { font-family: 'Playfair Display', serif; }
 .accent-text { font-family: 'Cormorant Garamond', serif; }
 
+/* Hero */
 .hero-section{
   background-image:url('https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/da8ed426a16fbd45b8387fcbd91cd941.jpeg');
   background-size:cover;background-position:center;position:relative;
 }
 .hero-section::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.3);z-index:1;}
 .hero-section>.container{position:relative;z-index:2;}
+
 .cream-bg{ background-color:#FDF8F3; }
 .gold-border{ border-color:#C5A572; }
 .gold-text{ color:#C5A572; }
+.gold-pattern{ background-image:radial-gradient(#C5A572 1px, transparent 1px); background-size:20px 20px; opacity:.1; }
 
-/* === 卡片：默认清晰；hover 才出现金色遮罩+文字 === */
+/* === Cat cards: default clear; show gold overlay on hover === */
 .cat-card img{
   width:100%; height:400px; object-fit:cover; object-position:top;
   filter:brightness(1); transition:filter .3s ease;
@@ -48,12 +56,12 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
 }
 .cat-card:hover .cat-info{ opacity:1; }
 
-/* 表单聚焦金色边 */
+/* Form focus */
 .gold-input:focus{
   border-color:#C5A572; outline:none; box-shadow:0 0 0 2px rgba(197,165,114,.2);
 }
 
-/* 自定义复选框 */
+/* Custom checkbox */
 .custom-checkbox{ position:relative; padding-left:30px; cursor:pointer; display:flex; align-items:center; transition:all .3s ease; }
 .custom-checkbox:hover .checkmark{ border-color:#b48f5f; }
 .custom-checkbox input{ position:absolute; opacity:0; cursor:pointer; }
@@ -65,11 +73,10 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
 @keyframes checkmark{ 0%{opacity:0;transform:rotate(45deg) scale(.8);} 100%{opacity:1;transform:rotate(45deg) scale(1);} }
 .custom-checkbox .checkbox-text{ color:#4B5563; font-weight:500; transition:color .2s ease; }
 .custom-checkbox input:checked ~ .checkbox-text{ color:#1F2937; }
-
-.gold-pattern{ background-image:radial-gradient(#C5A572 1px, transparent 1px); background-size:20px 20px; opacity:.1; }
 </style>
 </head>
 <body>
+
 <!-- Header -->
 <header class="sticky top-0 z-50 bg-white shadow-md">
   <div class="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -212,7 +219,7 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
     </div>
 
     <div id="catGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card: Mochi -->
+      <!-- Mochi -->
       <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
         <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/1e874bcb82604ffd8f19dc07c09579a8.jpeg" alt="Mochi - Lilac Golden Shaded">
         <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
@@ -224,8 +231,7 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           </div>
         </div>
       </div>
-
-      <!-- Card: Latte -->
+      <!-- Latte -->
       <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
         <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3b9a2f3f0896bd31aac99981a90d913b.jpeg" alt="Latte - Blue Golden Shaded">
         <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
@@ -237,12 +243,10 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           </div>
         </div>
       </div>
-
-      <!-- Kitten 1 -->
-      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+      <!-- Kittens -->
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
         <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/496908928357fad816579ed3ec3a7f2b.jpeg" alt="Lilac Golden Shaded kitten">
         <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-          <h3 class="heading text-2xl font-bold"></h3>
           <p class="text-lg font-light">Lilac Golden Shaded | 7 weeks</p>
           <div class="flex mt-3">
             <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Boy</span>
@@ -250,12 +254,9 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           </div>
         </div>
       </div>
-
-      <!-- Kitten 2 -->
-      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
         <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/3209c3bd9ba97579e633b348a347e5bd.jpeg" alt="Lilac Golden Shaded kitten">
         <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-          <h3 class="heading text-2xl font-bold"></h3>
           <p class="text-lg font-light">Lilac Golden Shaded | 7 weeks</p>
           <div class="flex mt-3">
             <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Girl</span>
@@ -263,12 +264,9 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           </div>
         </div>
       </div>
-
-      <!-- Kitten 3 -->
-      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
         <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/e34bb7e24cc842686228a666aa1f3d90.jpeg" alt="Blue Golden Shaded kitten">
         <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-          <h3 class="heading text-2xl font-bold"></h3>
           <p class="text-lg font-light">Blue Golden Shaded | 7 weeks</p>
           <div class="flex mt-3">
             <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Boy</span>
@@ -276,12 +274,9 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           </div>
         </div>
       </div>
-
-      <!-- Kitten 4 -->
-      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg group">
+      <div class="cat-card relative rounded-lg overflow-hidden shadow-lg">
         <img src="https://static.readdy.ai/image/00a195fe4b7589f7dd0b296f40da557d/750c2bb41cee1c3b3a3831d30c927937.jpeg" alt="Golden Point kitten">
         <div class="cat-info absolute inset-0 flex flex-col justify-end p-6 text-white">
-          <h3 class="heading text-2xl font-bold"></h3>
           <p class="text-lg font-light">Golden Point | 7 weeks</p>
           <div class="flex mt-3">
             <span class="bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full mr-2">Girl</span>
@@ -304,16 +299,12 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           <h3 class="heading text-2xl font-semibold mb-6 text-primary">Get in Touch</h3>
           <p class="text-gray-700 mb-8">Interested in our Golden British kittens or have questions about our breeding program? Fill out the form below and we'll get back to you as soon as possible.</p>
 
-          <!-- 使用 FormSubmit AJAX：主送 cokikocats@gmail.com，CC 到 yanghanbo666@gmail.com -->
-          <form action="https://formsubmit.co/ajax/yanghanbo666@gmail.com" method="POST" id="contactForm">
-            <!-- 蜜罐，防机器人 -->
+          <!-- FormSubmit AJAX：主送 cokikocats@gmail.com，CC 到 yanghanbo666@gmail.com -->
+          <form action="https://formsubmit.co/ajax/cokikocats@gmail.com" method="POST" id="contactForm">
             <input type="text" name="_honey" style="display:none">
-            <!-- 关闭验证码 -->
             <input type="hidden" name="_captcha" value="false">
-            <!-- 邮件主题与格式 -->
             <input type="hidden" name="_subject" value="New Cokiko Cattery inquiry">
             <input type="hidden" name="_template" value="table">
-            <!-- 抄送 -->
             <input type="hidden" name="_cc" value="yanghanbo666@gmail.com">
 
             <div class="mb-6">
@@ -383,34 +374,24 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
               </div>
             </div>
           </div>
+
+          <!-- Follow Us（两枚金色圆形图标：Instagram + WeChat） -->
           <div class="mt-auto">
-            <h3 class="heading text-xl font-semibold mb-4 text-primary">Certifications</h3>
-            <div class="flex flex-wrap gap-3">
-              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">WCF Registered</span>
-              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Catz Inc Registered</span>
-              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">NZCF Member</span>
-              <span class="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border border-primary">Ethical Breeder</span>
-            </div>
-            <div class="mt-8">
-              <h3 class="heading text-xl font-semibold mb-4 text-primary">Follow Us</h3>
-              <div class="flex space-x-4">
-                <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-                  <i class="ri-instagram-line"></i>
-                </a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-                  <i class="ri-facebook-fill"></i>
-                </a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-                  <i class="ri-pinterest-line"></i>
-                </a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
-                  <i class="ri-youtube-line"></i>
-                </a>
-              </div>
+            <h3 class="heading text-xl font-semibold mb-4 text-primary">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener"
+                 aria-label="Instagram"
+                 class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a href="#" aria-label="WeChat"
+                 class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+                <i class="ri-wechat-fill ri-lg"></i>
+              </a>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
@@ -427,12 +408,18 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
         </div>
         <p class="text-gray-400 max-w-xs">Breeding exceptional Golden British Shorthairs with perfect temperament and stunning appearance since 2022.</p>
         <div class="mt-6 flex space-x-4">
-          <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener" class="text-gray-400 hover:text-primary transition"><i class="ri-instagram-line ri-lg"></i></a>
-          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-facebook-fill ri-lg"></i></a>
-          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-pinterest-line ri-lg"></i></a>
-          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-youtube-line ri-lg"></i></a>
+          <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener"
+             aria-label="Instagram"
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+            <i class="ri-instagram-line ri-lg"></i>
+          </a>
+          <a href="#" aria-label="WeChat"
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+            <i class="ri-wechat-fill ri-lg"></i>
+          </a>
         </div>
       </div>
+
       <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
         <div>
           <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
@@ -462,6 +449,7 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
         </div>
       </div>
     </div>
+
     <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
       <p class="text-gray-500 text-sm">© 2025 Golden Elegance Cattery. All rights reserved.</p>
       <div class="mt-4 md:mt-0 flex space-x-6">
@@ -474,8 +462,15 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
 </footer>
 
 <!-- Scripts -->
-<script id="catFilterScript">
+<script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll to top
+  const homeLink = document.getElementById('homeLink');
+  homeLink.addEventListener('click', function(e) {
+    e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  // Cat filter
   const allCatsBtn = document.getElementById('allCatsBtn');
   const kingsBtn = document.getElementById('kingsBtn');
   const queensBtn = document.getElementById('queensBtn');
@@ -483,9 +478,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function setActiveButton(activeBtn) {
     [allCatsBtn, kingsBtn, queensBtn].forEach(btn => {
-      btn.classList.remove('bg-primary', 'text-white'); btn.classList.add('text-gray-700');
+      btn.classList.remove('bg-primary','text-white'); btn.classList.add('text-gray-700');
     });
-    activeBtn.classList.remove('text-gray-700'); activeBtn.classList.add('bg-primary', 'text-white');
+    activeBtn.classList.remove('text-gray-700'); activeBtn.classList.add('bg-primary','text-white');
   }
   function filterCats(category) {
     const cards = catGrid.querySelectorAll('.cat-card');
@@ -502,21 +497,8 @@ document.addEventListener('DOMContentLoaded', function() {
   allCatsBtn.addEventListener('click', ()=>{ setActiveButton(allCatsBtn); filterCats('all'); });
   kingsBtn.addEventListener('click', ()=>{ setActiveButton(kingsBtn); filterCats('Stud'); });
   queensBtn.addEventListener('click', ()=>{ setActiveButton(queensBtn); filterCats('Queen'); });
-});
-</script>
 
-<script id="scrollToTopScript">
-document.addEventListener('DOMContentLoaded', function() {
-  const homeLink = document.getElementById('homeLink');
-  homeLink.addEventListener('click', function(e) {
-    e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
-  });
-});
-</script>
-
-<!-- 表单脚本：字符计数 + FormSubmit AJAX 提交 -->
-<script id="formScript">
-document.addEventListener('DOMContentLoaded', function() {
+  // Form: char count + AJAX submit
   const form = document.getElementById('contactForm');
   const messageTextarea = document.getElementById('message');
   const charCount = document.getElementById('charCount');
