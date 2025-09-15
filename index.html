@@ -36,17 +36,17 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
 .gold-border{ border-color:#C5A572; }
 .gold-text{ color:#C5A572; }
 
-/* === 卡片：常驻金色遮罩（匹配你截图效果） === */
+/* === 卡片：默认清晰；hover 才出现金色遮罩+文字 === */
 .cat-card img{
   width:100%; height:400px; object-fit:cover; object-position:top;
-  filter:brightness(0.85);
+  filter:brightness(1); transition:filter .3s ease;
 }
-.cat-card:hover .cat-info{ opacity:1; }
+.cat-card:hover img{ filter:brightness(.85); }
 .cat-info{
-  opacity:1; /* 关键：默认可见 */
-  transition:opacity .3s ease;
+  opacity:0; transition:opacity .3s ease;
   background:rgba(197,165,114,.88);
 }
+.cat-card:hover .cat-info{ opacity:1; }
 
 /* 表单聚焦金色边 */
 .gold-input:focus{
@@ -304,17 +304,16 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
           <h3 class="heading text-2xl font-semibold mb-6 text-primary">Get in Touch</h3>
           <p class="text-gray-700 mb-8">Interested in our Golden British kittens or have questions about our breeding program? Fill out the form below and we'll get back to you as soon as possible.</p>
 
-          <!-- 使用 FormSubmit AJAX：主送 icloud，CC 到 yanghanbo666@gmail.com -->
-          <form action="https://formsubmit.co/ajax/yby0502@icloud.com" method="POST" id="contactForm">
+          <!-- 使用 FormSubmit AJAX：主送 cokikocats@gmail.com，CC 到 yanghanbo666@gmail.com -->
+          <form action="https://formsubmit.co/ajax/yanghanbo666@gmail.com" method="POST" id="contactForm">
             <!-- 蜜罐，防机器人 -->
             <input type="text" name="_honey" style="display:none">
-
             <!-- 关闭验证码 -->
             <input type="hidden" name="_captcha" value="false">
             <!-- 邮件主题与格式 -->
             <input type="hidden" name="_subject" value="New Cokiko Cattery inquiry">
             <input type="hidden" name="_template" value="table">
-            <!-- 抄送到另一个邮箱 -->
+            <!-- 抄送 -->
             <input type="hidden" name="_cc" value="yanghanbo666@gmail.com">
 
             <div class="mb-6">
@@ -380,7 +379,7 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
               <div class="w-10 h-10 flex items-center justify-center mr-4 text-primary"><i class="ri-mail-line ri-lg"></i></div>
               <div>
                 <h4 class="font-medium text-gray-900">Email</h4>
-                <p class="text-gray-700">yby0502@icloud.com</p>
+                <p class="text-gray-700">cokikocats@gmail.com</p>
               </div>
             </div>
           </div>
@@ -395,10 +394,18 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
             <div class="mt-8">
               <h3 class="heading text-xl font-semibold mb-4 text-primary">Follow Us</h3>
               <div class="flex space-x-4">
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-instagram-line"></i></a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-facebook-fill"></i></a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-pinterest-line"></i></a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition"><i class="ri-youtube-line"></i></a>
+                <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+                  <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+                  <i class="ri-pinterest-line"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 transition">
+                  <i class="ri-youtube-line"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -420,7 +427,7 @@ body { font-family: 'Open Sans', sans-serif; color: #333333; }
         </div>
         <p class="text-gray-400 max-w-xs">Breeding exceptional Golden British Shorthairs with perfect temperament and stunning appearance since 2022.</p>
         <div class="mt-6 flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-instagram-line ri-lg"></i></a>
+          <a href="https://www.instagram.com/cokikocats/" target="_blank" rel="noopener" class="text-gray-400 hover:text-primary transition"><i class="ri-instagram-line ri-lg"></i></a>
           <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-facebook-fill ri-lg"></i></a>
           <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-pinterest-line ri-lg"></i></a>
           <a href="#" class="text-gray-400 hover:text-primary transition"><i class="ri-youtube-line ri-lg"></i></a>
